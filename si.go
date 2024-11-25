@@ -99,6 +99,7 @@ func printFOSInfo(bytecode []byte) {
 	}
 
 	binary.Read(reader, binary.LittleEndian, &u8)
+	formVersion := u8
 	fmt.Println("Format Version:", u8)
 
 	binary.Read(reader, binary.LittleEndian, &u32)
@@ -112,9 +113,10 @@ func printFOSInfo(bytecode []byte) {
 		fmt.Printf("Plugins [%03d]: %s\n", i, string(plugin))
 	}
 
-	if version == 12 {
+	if version == 12 && formVersion >= 78 {
 		var lightPluginCount uint16
 		binary.Read(reader, binary.LittleEndian, &lightPluginCount)
+
 		for i := 0; i < int(lightPluginCount); i++ {
 			binary.Read(reader, binary.LittleEndian, &u16)
 			plugin := make([]byte, u16)
