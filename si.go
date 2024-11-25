@@ -13,7 +13,7 @@ import (
 )
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "Usage: fi: [options] [files]\n options: -h, --help: Print this help message\n")
+	fmt.Fprintf(os.Stderr, "Usage: si: [options] [files]\n options: -h, --help: Print this help message\n")
 }
 
 // from: https://parsiya.net/blog/2018-11-01-windows-filetime-timestamps-and-byte-wrangling-with-go/
@@ -158,7 +158,7 @@ func main() {
 		}
 
 		if strings.Compare(string(buffer[0:13]), "TESV_SAVEGAME") != 0 {
-			fmt.Fprintf(os.Stderr, "not a Fallout 4 savefile")
+			fmt.Fprintf(os.Stderr, "not a Skyrim savefile")
 			continue
 		}
 
